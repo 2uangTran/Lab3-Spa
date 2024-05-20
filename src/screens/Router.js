@@ -8,7 +8,7 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import Login from './Login';
 import Customer from './Customer';
 import Admin from './Admin';
-import COLORS from '../constants';
+import COLORS from '../assets/theme/COLOR';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Register from './Register';
 import Setting from './Setting';
@@ -26,14 +26,9 @@ const Tab = createBottomTabNavigator();
 const AdminScreens = () => {
   const handleDelete = (id, navigation) => {
     Alert.alert(
-      'Confirmation',
-      'Are you sure to delete this service?',
+      'Warning',
+      'Are you sure want to move delete this service? This operation cannot be returned',
       [
-        {
-          text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
         {
           text: 'Delete',
           onPress: async () => {
@@ -41,6 +36,11 @@ const AdminScreens = () => {
             console.log(`Deleting service with id: ${id}`);
             navigation.goBack();
           },
+        },
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
         },
       ],
       {cancelable: false},
@@ -50,7 +50,7 @@ const AdminScreens = () => {
     <Stack.Navigator
       screenOptions={{
         headerTintColor: 'white',
-        headerStyle: {backgroundColor: COLORS.blue},
+        headerStyle: {backgroundColor: COLORS.pink},
         headerTitleAlign: 'center',
       }}>
       <Stack.Screen

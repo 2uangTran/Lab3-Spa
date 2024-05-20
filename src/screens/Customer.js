@@ -2,7 +2,7 @@ import React from 'react';
 import {View, FlatList, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
-import COLORS from '../constants';
+import COLORS from '../assets/theme/COLOR';
 
 const Customer = () => {
   const navigation = useNavigation();

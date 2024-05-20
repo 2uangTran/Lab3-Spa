@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import COLORS from '../constants';
+import COLORS from '../assets/theme/COLOR';
 
 const CustomerDetail = ({route}) => {
   const {customerId} = route.params;

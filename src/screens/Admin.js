@@ -11,7 +11,7 @@ import {Appbar, Menu, IconButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 import {useMyContextController, logout} from '../store';
-import COLORS from '../constants';
+import COLORS from '../assets/theme/COLOR';
 import Service from '../store/services';
 
 const Admin = () => {
@@ -53,7 +53,7 @@ const Admin = () => {
   }
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={styles.container}>
       <Appbar.Header style={{backgroundColor: COLORS.pink}}>
         <Appbar.Content
           title={`${userLogin ? userLogin.name : 'Guest'}`}
@@ -88,7 +88,7 @@ const Admin = () => {
       </Appbar.Header>
 
       <View style={styles.imageContainer}>
-        <Image source={require('../assets/logo.png')} style={styles.logo} />
+        <Image source={require('../assets/img/logo.png')} style={styles.logo} />
       </View>
 
       <View style={styles.inputContainer}>
@@ -119,6 +119,10 @@ const Admin = () => {
 export default Admin;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'fff',
+  },
   imageContainer: {
     alignItems: 'center',
     marginTop: 10,

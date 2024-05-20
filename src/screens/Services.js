@@ -1,6 +1,5 @@
-import {View, Image} from 'react-native';
-import {COLORS} from '../constants';
-import {IconButton, Text} from 'react-native-paper';
+import {View, Text, Image} from 'react-native';
+import {COLORS} from '../assets/theme/COLOR';
 import {useMyContextController} from '../store';
 import {logo} from '../../constants/images';
 import {useEffect} from 'react';

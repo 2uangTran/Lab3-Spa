@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {List, Menu} from 'react-native-paper';
-import COLORS from '../constants';
+import COLORS from '../assets/theme/COLOR';
 import {useNavigation} from '@react-navigation/native';
 import {useMyContextController} from '.'; // Import context
 
@@ -80,6 +80,7 @@ const Service = ({id, title, price, imageUrl}) => {
                   navigation.navigate('ConfirmOrder', {
                     serviceName: title,
                     servicePrice: price,
+                    imageUrl: imageUrl,
                   });
                   closeMenu();
                 }}

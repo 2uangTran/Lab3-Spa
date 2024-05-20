@@ -3,14 +3,11 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
+  Text,
   TextInput,
-  Image,
 } from 'react-native';
-import {Button, HelperText, Text} from 'react-native-paper';
 import {login, useMyContextController} from '../store';
-import {COLORS} from '../constants';
-import {green100} from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
-import AddNewService from './AddNewService';
+import COLORS from '../assets/theme/COLOR';
 
 const Login = ({navigation}) => {
   const [controller, dispatch] = useMyContextController();
@@ -40,11 +37,6 @@ const Login = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <Image
-          source={require('../assets/logo.png')}
-          style={styles.logo}
-          resizeMode="contain"
-        />
         <Text style={styles.logo}>LOGIN</Text>
       </View>
       <View style={styles.inputView}>
@@ -100,7 +92,7 @@ const styles = StyleSheet.create({
   logo: {
     fontWeight: 'bold',
     fontSize: 50,
-    color: '#fb5b5a',
+    color: COLORS.pink,
     marginBottom: 40,
   },
   inputView: {
@@ -124,7 +116,7 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: '90%',
-    backgroundColor: '#fb5b5a',
+    backgroundColor: COLORS.pink,
     borderRadius: 10,
     height: 50,
     alignItems: 'center',

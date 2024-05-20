@@ -25,7 +25,6 @@ function MyContextControllerProvider({children}) {
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
 }
 
-//react custom hook for using context
 function useMyContextController() {
   const context = useContext(MyContext);
   if (!context) {

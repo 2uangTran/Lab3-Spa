@@ -1,16 +1,15 @@
 import {
   Alert,
-  Image,
   View,
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Text,
 } from 'react-native';
-import {Button, HelperText, Text} from 'react-native-paper';
 import {useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import COLORS from '../constants';
+import COLORS from '../assets/theme/COLOR';
 
 const Register = ({navigation}) => {
   const [name, setName] = useState('');
@@ -129,7 +128,7 @@ const styles = StyleSheet.create({
   logo: {
     fontWeight: 'bold',
     fontSize: 50,
-    color: '#fb5b5a',
+    color: COLORS.pink,
     marginBottom: 40,
   },
   inputView: {
@@ -153,7 +152,7 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: '90%',
-    backgroundColor: '#fb5b5a',
+    backgroundColor: COLORS.pink,
     borderRadius: 10,
     height: 50,
     alignItems: 'center',

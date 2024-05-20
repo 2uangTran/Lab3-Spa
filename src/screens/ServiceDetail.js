@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {useRoute, useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
-import COLORS from '../constants';
+import COLORS from '../assets/theme/COLOR';
 
 const DetailService = () => {
   const route = useRoute();

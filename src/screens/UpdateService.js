@@ -1,11 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import {View, Image, TextInput, StyleSheet, Text, Alert} from 'react-native';
-import {Button} from 'react-native-paper';
+import {
+  View,
+  Image,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  Alert,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import {launchImageLibrary} from 'react-native-image-picker';
-import COLORS from '../constants';
+import COLORS from '../assets/theme/COLOR';
 
 const UpdateService = () => {
   const navigation = useNavigation();
@@ -74,13 +82,15 @@ const UpdateService = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputWrapper}>
+      <View style={styles.inputView}>
         <TextInput
           value={title}
           onChangeText={setTitle}
           placeholder="Service Name"
           style={styles.textInput}
         />
+      </View>
+      <View style={styles.inputView}>
         <TextInput
           value={price}
           onChangeText={setPrice}
@@ -94,23 +104,12 @@ const UpdateService = () => {
           <Image source={{uri: imageUri}} style={styles.image} />
         ) : null}
       </View>
-      <View
-        style={{
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexDirection: 'row',
-        }}>
-        <Button
-          contentStyle={{height: 40}}
-          labelStyle={{fontSize: 16}}
-          style={styles.button}
-          onPress={selectImage}>
-          Select Image
-        </Button>
-        <Button style={styles.button} onPress={handleUpdate}>
-          Update Service
-        </Button>
-      </View>
+      <TouchableOpacity style={styles.loginBtn} onPress={selectImage}>
+        <Icon name="camera" size={20} color="#fff" />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.loginBtn} onPress={handleUpdate}>
+        <Text style={styles.loginText}>Update Service</Text>
+      </TouchableOpacity>
       {finalUpdate && (
         <View style={styles.finalUpdate}>
           <Text style={styles.finalUpdateText}>Last Updated:</Text>
@@ -125,9 +124,23 @@ const UpdateService = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    marginBottom: 10,
-    marginTop: 20,
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  loginBtn: {
+    width: '90%',
+    backgroundColor: COLORS.pink,
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  loginText: {
+    color: '#fff',
+    fontSize: 20,
   },
   image: {
     width: 380,
@@ -142,18 +155,20 @@ const styles = StyleSheet.create({
     width: 180,
     height: 40,
   },
-  inputWrapper: {
-    flexDirection: 'column',
-    marginBottom: 10,
-    alignItems: 'center',
+  inputView: {
+    borderRadius: 5,
+    backgroundColor: '#fff',
+    margin: 10,
+    padding: 2,
+    width: '95%',
+    elevation: 5,
+    borderWidth: 5,
+    borderColor: '#ffffff',
   },
-  textInput: {
-    backgroundColor: COLORS.grey,
+  inputText: {
     height: 50,
-    paddingHorizontal: 10,
-    width: 380,
-    borderRadius: 15,
-    marginBottom: 20,
+    color: '#003f5c',
+    fontSize: 30,
   },
   finalUpdate: {
     flexDirection: 'row',

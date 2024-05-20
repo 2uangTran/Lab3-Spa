@@ -21,7 +21,6 @@ const Transaction = () => {
         setLoading(false);
       });
 
-    // Unsubscribe from events when no longer in use
     return () => unsubscribe();
   }, []);
 

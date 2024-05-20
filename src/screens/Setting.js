@@ -1,8 +1,7 @@
-import {Settings, StyleSheet, View} from 'react-native';
-import {Button, IconButton, Text} from 'react-native-paper';
+import {Settings, StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {useMyContextController, logout} from '../store';
 import {useEffect} from 'react';
-import COLORS from '../constants';
+import COLORS from '../assets/theme/COLOR';
 
 export default Setting = ({navigation}) => {
   const [controller, dispatch] = useMyContextController();
@@ -15,13 +14,12 @@ export default Setting = ({navigation}) => {
   };
   return (
     <View style={styles.container}>
-      <Button
-        style={{backgroundColor: COLORS.pink, width: 300}}
+      <TouchableOpacity
+        style={styles.loginBtn}
         mode="contained"
         onPress={onSubmit}>
-        {' '}
-        Đăng xuất
-      </Button>
+        <Text style={styles.loginText}>Đăng xuất</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -30,6 +28,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'fff',
+  },
+  loginBtn: {
+    width: '90%',
+    backgroundColor: COLORS.pink,
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 30,
+    marginBottom: 10,
+  },
+  loginText: {
+    color: '#fff',
+    fontSize: 20,
   },
 });

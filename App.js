@@ -2,13 +2,13 @@ import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import {MyContextControllerProvider} from './store';
-import Router from './screens/Router';
+import {MyContextControllerProvider} from './src/store';
+import Router from './src/screens/Router';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StatusBar} from 'react-native';
 import {Provider as PaperProvider} from 'react-native-paper';
-import COLORS from './constants';
+import COLORS from './src/assets/theme/COLOR';
 
 const Stack = createNativeStackNavigator();
 const initial = () => {

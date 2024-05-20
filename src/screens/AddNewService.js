@@ -7,13 +7,14 @@ import {
   StyleSheet,
   Image,
   Platform,
+  TouchableOpacity,
 } from 'react-native';
-import {Button} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import {launchImageLibrary} from 'react-native-image-picker';
-import COLORS from '../constants';
-import {createNewService} from '../store'; // Ensure this path is correct
+import COLORS from '../assets/theme/COLOR';
+import {createNewService} from '../store';
 
 const AddNewService = () => {
   const [service, setService] = useState('');
@@ -27,14 +28,14 @@ const AddNewService = () => {
 
   async function addService() {
     if (service.trim() === '') {
-      setServiceError('Hãy nhập dịch vụ.');
+      setServiceError('Chưa nhập dịch vụ');
       return;
     } else {
       setServiceError('');
     }
 
     if (isNaN(parseFloat(price))) {
-      setPriceError('Hãy nhập giá tiền.');
+      setPriceError('Chưa nhập giá tiền.');
       return;
     } else {
       setPriceError('');
@@ -104,56 +105,48 @@ const AddNewService = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.inputContainer}>
-        <View style={styles.inputWrapper}>
-          <TextInput
-            placeholder="Service name*"
-            value={service}
-            onChangeText={text => setService(text)}
-            style={styles.textInput}
-          />
-          <Text style={styles.errorText}>{serviceError}</Text>
-        </View>
-        <View style={styles.inputWrapper}>
-          <TextInput
-            placeholder="Price*"
-            value={price.toString()}
-            onChangeText={text => {
-              if (/^\d*\.?\d*$/.test(text) || text === '') {
-                setPrice(text);
-                setPriceError('');
-              } else {
-                setPriceError('Chỉ được phép nhập số!!.');
-              }
-            }}
-            keyboardType="numeric"
-            style={styles.textInput}
-          />
-          <Text style={styles.errorText}>{priceError}</Text>
-        </View>
-
-        <View style={styles.inputWrapper}>
-          <Button onPress={selectImage}>Select Image</Button>
-          {imageUri ? (
-            <Image source={{uri: imageUri}} style={styles.imagePreview} />
-          ) : null}
-        </View>
-
-        <View>
-          <Button
-            style={{
-              backgroundColor: COLORS.blue,
-              width: 300,
-              height: 50,
-              justifyContent: 'center',
-            }}
-            contentStyle={{height: 40}}
-            labelStyle={{fontSize: 16}}
-            onPress={addService}>
-            Thêm
-          </Button>
-        </View>
+      <View style={styles.inputView}>
+        <TextInput
+          placeholder="Service Name ..."
+          placeholderTextColor="#9BA4B5"
+          value={service}
+          onChangeText={text => setService(text)}
+          style={styles.textInput}
+        />
       </View>
+
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Price..."
+          placeholderTextColor="#9BA4B5"
+          value={price.toString()}
+          keyboardType="numeric"
+          onChangeText={text => {
+            if (/^\d*\.?\d*$/.test(text) || text === '') {
+              setPrice(text);
+              setPriceError('');
+            } else {
+              setPriceError('Chỉ được phép nhập số!!.');
+            }
+          }}
+        />
+      </View>
+      <Text style={styles.errorText}>
+        {serviceError}
+        {serviceError && priceError ? ' & ' : ''}
+        {priceError}
+      </Text>
+      {imageUri ? (
+        <Image source={{uri: imageUri}} style={styles.imagePreview} />
+      ) : null}
+      <TouchableOpacity style={styles.loginBtn} onPress={selectImage}>
+        <Icon name="camera" size={20} color="#fff" />
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.loginBtn} onPress={addService}>
+        <Icon name="plus" size={20} color="#fff" />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -161,33 +154,56 @@ const AddNewService = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  inputContainer: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginBottom: 10,
-    marginTop: 20,
-  },
-  inputWrapper: {
-    flexDirection: 'column',
-    marginBottom: 10,
+    backgroundColor: '#fff',
     alignItems: 'center',
   },
-  textInput: {
-    backgroundColor: COLORS.grey,
+  logoContainer: {
+    alignItems: 'center',
+  },
+  logo: {
+    fontWeight: 'bold',
+    fontSize: 50,
+    color: '#fb5b5a',
+    marginBottom: 40,
+  },
+  inputView: {
+    borderRadius: 5,
+    backgroundColor: '#fff',
+    margin: 10,
+    padding: 2,
+    width: '95%',
+    elevation: 5,
+    borderWidth: 5,
+    borderColor: '#ffffff',
+  },
+  inputText: {
     height: 50,
-    paddingHorizontal: 10,
-    width: 390,
-    borderRadius: 15,
-  },
-  errorText: {
-    color: 'red',
-    marginLeft: 10,
+    color: '#003f5c',
   },
   imagePreview: {
     width: 250,
     height: 250,
     marginTop: 10,
+  },
+  loginBtn: {
+    width: '90%',
+    backgroundColor: COLORS.pink,
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    // marginBottom: 10,
+  },
+  loginText: {
+    color: '#fff',
+    fontSize: 20,
+  },
+  questions: {
+    color: '#003f5c',
+  },
+  errorText: {
+    color: 'red',
   },
 });
 
